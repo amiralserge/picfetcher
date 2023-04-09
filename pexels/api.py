@@ -4,7 +4,7 @@ import re
 from typing import (Any, Dict, List)
 
 
-class Endpoint:
+class BaseEndpoint:
     base_url = "https://api.pexels.com/v1/"
     api_path = None
     _url_path_param_regex = re.compile(r"\{(\w+)\}")
