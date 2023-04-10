@@ -15,9 +15,9 @@ class BaseEndpoint:
         'Accept-Content': 'application/json'
     }
 
-    def __init__(self, apli_key):
+    def __init__(self, api_key):
         self.session = requests.session()
-        self.api_key = apli_key
+        self.api_key = api_key
 
     def get(self, **kwargs) -> Any:
         kwargs.pop('url', None)
