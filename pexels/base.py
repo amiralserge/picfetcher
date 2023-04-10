@@ -9,7 +9,7 @@ from .exceptions import InvalidParamsException
 class BaseEndpoint:
     base_url = "https://api.pexels.com/v1/"
     api_path = None
-    _required_params = None
+    required_params = None
     _url_path_param_regex = re.compile(r"\{(\w+)\}")
     _default_headers = {
         'Accept-Content': 'application/json'
