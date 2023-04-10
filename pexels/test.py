@@ -43,7 +43,7 @@ class TestEndpoint:
 
     @mock.patch.object(base.requests.Session, 'request')
     def test_get(self, request_mock):
-        endpoint = self.get_endpoint_stub_instance(_api_path='photos/{id}')
+        endpoint = self.get_endpoint_stub_instance(_api_path='v1/photos/{id}')
         endpoint.get(params=dict(id=1204, dummy='value'))
         request_mock.assert_called_with(
             method='get',
@@ -60,7 +60,7 @@ class TestEndpoint:
             endpoint.get()
 
     def test_path_params_validation(self):
-        endpoint = self.get_endpoint_stub_instance(_api_path='photo/{id}')
+        endpoint = self.get_endpoint_stub_instance(_api_path='v1/photo/{id}')
         with pytest.raises(
                 InvalidParamsException,
                 match="Param 'id' is unresolved in url https://api.pexels.com/v1/photo/{id}"):

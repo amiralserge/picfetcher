@@ -7,7 +7,7 @@ from .exceptions import InvalidParamsException
 
 
 class BaseEndpoint:
-    base_url = "https://api.pexels.com/v1/"
+    base_url = "https://api.pexels.com/"
     api_path = None
     required_params = None
     _url_path_param_regex = re.compile(r"\{(\w+)\}")
