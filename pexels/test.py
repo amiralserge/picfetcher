@@ -54,12 +54,14 @@ class TestEndpoint:
 
     def test_required_params_validation(self):
         endpoint = self.get_endpoint_stub_instance(_api_path='search', _required_params=['query'])
-        with pytest.raises(InvalidParamsException, 
-                           match="Missing required parameter 'query' on endpoint /search"):
+        with pytest.raises(
+                InvalidParamsException,
+                match="Missing required parameter 'query' on endpoint /search"):
             endpoint.get()
 
     def test_path_params_validation(self):
         endpoint = self.get_endpoint_stub_instance(_api_path='photo/{id}')
-        with pytest.raises(InvalidParamsException, 
-                           match="Param 'id' is unresolved in url https://api.pexels.com/v1/photo/{id}"):
+        with pytest.raises(
+                InvalidParamsException,
+                match="Param 'id' is unresolved in url https://api.pexels.com/v1/photo/{id}"):
             endpoint.get(params=dict(some="value"))

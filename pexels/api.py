@@ -17,7 +17,7 @@ class CuratedPhotosEndpoint(BaseEndpoint):
 class VideosSearchEndpoint(BaseEndpoint):
     api_path = 'videos/search'
     required_params = ['query']
- 
+
 
 class PopularVideosEndpoint(BaseEndpoint):
     api_path = 'videos/popular'
@@ -30,7 +30,7 @@ class VideoEndpoint(BaseEndpoint):
 class MyCollectionsEndpoint(BaseEndpoint):
     api_path = 'collections'
 
-    
+
 class FeaturedCollectionsEndpoint(BaseEndpoint):
     api_path = 'collections/featured'
 

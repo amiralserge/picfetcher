@@ -40,17 +40,17 @@ class BaseEndpoint:
     @classmethod
     def _validate_url_params(cls, resolved_url, url_params, raise_if_invalid=True):
         """
-        Verifies that all the required url query params and url path params 
+        Verifies that all the required url query params and url path params
         for the endpoint are resolved.
-        resolved_url: str 
+        resolved_url: str
                 the supposedly resolved url
         url_params: dict
             query parameters dictionary
         raise_if_invalid: bool
             if set to True, InvalidParamsException will be raised when the url invalid
-        Returns: 
-            the tupple (True, None) if the url and params are valid 
-            or the tupple (False, error_message) in the opposite case 
+        Returns:
+            the tupple (True, None) if the url and params are valid
+            or the tupple (False, error_message) in the opposite case
         """
         if cls.required_params:
             for param in cls.required_params:
