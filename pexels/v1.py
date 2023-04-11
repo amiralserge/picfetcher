@@ -15,16 +15,16 @@ class CuratedPhotosEndpoint(BaseEndpoint):
 
 
 class VideosSearchEndpoint(BaseEndpoint):
-    api_path = 'v1/videos/search'
+    api_path = 'videos/search'
     required_params = ['query']
 
 
 class PopularVideosEndpoint(BaseEndpoint):
-    api_path = 'v1/videos/popular'
+    api_path = 'videos/popular'
 
 
 class VideoEndpoint(BaseEndpoint):
-    api_path = 'v1/videos/{id}'
+    api_path = 'videos/{id}'
 
 
 class MyCollectionsEndpoint(BaseEndpoint):
