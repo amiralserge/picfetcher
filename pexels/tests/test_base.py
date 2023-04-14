@@ -2,9 +2,9 @@ import pytest
 
 from unittest import mock
 
-from . import base
-from .base import BaseEndpoint
-from .exceptions import InvalidParamsException
+from .. import base
+from ..base import BaseEndpoint
+from ..exceptions import InvalidParamsException
 
 
 class TestEndpoint:

@@ -1,6 +1,6 @@
 import uuid
 
-from .v1 import Pexels
+from ..v1 import Pexels
 
 
 class TestPexelsClass:
