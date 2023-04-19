@@ -35,8 +35,8 @@ class ResourceRetriever:
             _next_params = dict([token.split('=') for token in next_page.split('?')[1].split('&')])
             res = self._fetch(_next_params)
 
-    def _fetch(self, **kwargs):
-        return self._endpoint.get(**kwargs)
+    def _fetch(self, params):
+        return self._endpoint.get(params=params)
 
     def _extract_data(self, data):
         return data
