@@ -27,9 +27,9 @@ class BaseResourceDowloader:
     def _process_resource(self, res_data) -> Any:
         pass
 
-    def _donwload_resource(self, url, dest_filename):
+    def _donwload_resource(self, url, dest_filename) -> None:
         pass
 
-    def _delete_folder_if_not_empty(self, folder_path):
-        pass
-    
+    def _delete_folder_if_not_empty(self, folder_path) -> None:
+        if not os.path.isfile(folder_path) and not len(os.listdir(folder_path)):
+            os.remove(folder_path)
