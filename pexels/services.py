@@ -1,4 +1,7 @@
 import os
+import requests
+import shutil
+
 
 from .helpers import ResourceRetriever
 
@@ -28,7 +31,8 @@ class BaseResourceDowloader:
         pass
 
     def _donwload_resource(self, url, dest_filename) -> None:
-        pass
+        with requests.get(url, stream=True) as resp, open(dest_filename, 'wb') as file:
+            shutil.copyfileobj(resp.raw, file)
 
     def _delete_folder_if_not_empty(self, folder_path) -> None:
         if not os.path.isfile(folder_path) and not len(os.listdir(folder_path)):
