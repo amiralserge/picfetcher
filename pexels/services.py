@@ -1,12 +1,13 @@
+import abc
 import os
 import requests
 import shutil
 
-
+from typing import Any
 from .helpers import ResourceRetriever
 
 
-class BaseResourceDowloader:
+class BaseResourceDowloader(abc.ABC):
 
     def __init__(self, retriever: ResourceRetriever) -> None:
         self._retriever = retriever
@@ -27,8 +28,9 @@ class BaseResourceDowloader:
             if not dest_folder_exists:
                 self._delete_folder_if_not_empty(where_to)
 
+    @abc.abstractmethod
     def _process_resource(self, res_data) -> Any:
-        pass
+        raise NotImplementedError()
 
     def _donwload_resource(self, url, dest_filename) -> None:
         with requests.get(url, stream=True) as resp, open(dest_filename, 'wb') as file:
