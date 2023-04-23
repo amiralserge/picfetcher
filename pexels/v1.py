@@ -4,6 +4,7 @@ from .base import BaseEndpoint
 class PhotosSearchEndpoint(BaseEndpoint):
     api_path = 'v1/search'
     required_params = ['query']
+    resource_key = 'photos'
 
 
 class PhotoEndpoint(BaseEndpoint):
