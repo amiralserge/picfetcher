@@ -5,12 +5,23 @@ import shutil
 
 from typing import Any
 from functools import partial
-from .helpers import ResourceRetriever
+from .helpers import ListResourceRetriever
 
 
-class BaseResourceDowloader(abc.ABC):
+class AbstractResourceDownloader(abc.ABC):
 
-    def __init__(self, retriever: ResourceRetriever) -> None:
+    @abc.abstractmethod
+    def download(self, where_to='./', **kwargs) -> None:
+        raise NotImplementedError()
+    
+    @abc.abstractmethod
+    def _download_resource(self, url, dest_filename) -> None:
+        raise NotImplementedError()
+
+
+class ListResourceDowloader(AbstractResourceDownloader):
+
+    def __init__(self, retriever: ListResourceRetriever) -> None:
         self._retriever = retriever
 
     def download(self, where_to='./', **kwargs) -> None:
@@ -35,7 +46,7 @@ class BaseResourceDowloader(abc.ABC):
     def _process_resource(self, res_data, **kwargs) -> Any:
         raise NotImplementedError()
 
-    def _donwload_resource(self, url, dest_filename) -> None:
+    def _download_resource(self, url, dest_filename) -> None:
         with requests.get(url, stream=True) as resp, open(dest_filename, 'wb') as file:
             shutil.copyfileobj(resp.raw, file)
 
@@ -44,7 +55,7 @@ class BaseResourceDowloader(abc.ABC):
             os.remove(folder_path)
 
 
-class ImageDownloader(BaseResourceDowloader):
+class ImageSearchDownloader(ListResourceDowloader):
     class Quality:
         MEDIUM = 'medium'
         ORIGINAL = 'original'
