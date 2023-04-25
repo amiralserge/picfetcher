@@ -79,7 +79,7 @@ class ListResourceDowloader(AbstractResourceDownloader):
             os.remove(folder_path)
 
 
-class ImageSearchDownloader(ListResourceDowloader):
+class PhotoSearchDownloader(ListResourceDowloader):
 
     class Quality:
         MEDIUM = 'medium'
