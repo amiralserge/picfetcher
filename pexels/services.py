@@ -79,21 +79,34 @@ class ListResourceDowloader(AbstractResourceDownloader):
             os.remove(folder_path)
 
 
+class PhotoQuality:
+    MEDIUM = 'medium'
+    ORIGINAL = 'original'
+    LARGE2X = 'large2x'
+    LARGE = 'large'
+    SMALL = 'small'
+    LANDSCAPE = 'landscape'
+    PORTRAIT = 'tiny'
+
+
 class PhotoSearchDownloader(ListResourceDowloader):
 
-    class Quality:
-        MEDIUM = 'medium'
-        ORIGINAL = 'original'
-        LARGE2X = 'large2x'
-        LARGE = 'large'
-        SMALL = 'small'
-        LANDSCAPE = 'landscape'
-        PORTRAIT = 'tiny'
+    def download(self, retriever_params, where_to='./', quality:PhotoQuality=PhotoQuality.ORIGINAL, **kwargs) -> None:
+        return super().download(retriever_params, where_to, quality=quality, **kwargs)
 
-    def download(self, retriever_params, where_to='./', quality:Quality=Quality.ORIGINAL) -> None:
-        return super().download(retriever_params, where_to, quality=quality)
+    def _process_resource(self, res_data, **kwargs) -> Tuple[str, str]:
+        quality = kwargs.get('quality')
+        image_url = res_data['src'][quality]
+        filename = image_url.split('?')[0].split('/')[-1]
+        return filename, image_url
 
-    def _process_resource(self, res_data, **kwargs) -> Any:
+
+class PhotoDownloader(SingleResourceDownloader):
+
+    def download(self, retriever_params, where_to='./', quality=PhotoQuality.ORIGINAL, **kwargs) -> None:
+        return super().download(retriever_params, where_to, quality=quality, **kwargs)
+
+    def _process_resource(self, res_data, **kwargs) -> Tuple[str, str]:
         quality = kwargs.get('quality')
         image_url = res_data['src'][quality]
         filename = image_url.split('?')[0].split('/')[-1]
